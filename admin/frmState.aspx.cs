@@ -1,6 +1,7 @@
 ﻿using PropertyPortal.BAL;
 using PropertyPortal.BO;
 using PropertyPortal.DAL;
+using PropertyPortal.usercontrol;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,7 +24,6 @@ namespace PropertyPortal.admin
                 BindStateMaster();
             }
         }
-
         protected void btnAddState_Click(object sender, EventArgs e)
         {
             clsState objclsState = new clsState();
@@ -32,11 +32,22 @@ namespace PropertyPortal.admin
             objclsState.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsStateBAL objclsStateBAL = new clsStateBAL();
-            objclsStateBAL.AddStateMaster(objclsState);
+            int id = objclsStateBAL.AddStateMaster(objclsState);
 
-            BindStateMaster();
-
-            ClearControls();
+            if (id == 0)
+            {
+                modaldistrict.Show();
+                btnAddState.Visible = true;
+                btnUpdateState.Visible = false;
+                ucAlert.showAlert("WARNING", objclsState.stateName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindStateMaster();
+                ClearControls();
+                btnAddState.Visible = true;
+                btnUpdateState.Visible = false;
+            }
         }
         private void BindStateMaster()
         {
@@ -91,6 +102,7 @@ namespace PropertyPortal.admin
 
                 case ("EditStateMaster"):
 
+                    modaldistrict.Show();
                     pkStateID = Convert.ToInt32(e.CommandArgument);
                     BindStateMaster(pkStateID);
                     btnAddState.Visible = false;
@@ -132,14 +144,34 @@ namespace PropertyPortal.admin
             objclsState.isActive = chkIsActive.Checked;
 
             clsStateBAL objclsStateBAL = new clsStateBAL();
-            objclsStateBAL.UpdateStateMaster(objclsState, Convert.ToInt32(hidpkStateID.Value));
+            int id = objclsStateBAL.UpdateStateMaster(objclsState, Convert.ToInt32(hidpkStateID.Value));
 
-            BindStateMaster();
+            if (id == 0)
+            {
+                modaldistrict.Show();
+                BindStateMaster(Convert.ToInt32(hidpkStateID.Value));
+                btnAddState.Visible = false;
+                btnUpdateState.Visible = true;
+                ucAlert.showAlert("WARNING", objclsState.stateName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
 
+            }
+            else if (id > 0)
+            {
+                BindStateMaster();
+                ClearControls();
+                btnAddState.Visible = true;
+                btnUpdateState.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsState.stateName + "", "Updated Successfully", "fw-bold text-success");
+            }
+
+
+        }
+        protected void btnDummy_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddState.Visible = true;
             btnUpdateState.Visible = false;
+            modaldistrict.Hide();
         }
     }
 }

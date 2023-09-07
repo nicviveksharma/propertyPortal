@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,7 +14,7 @@ namespace PropertyPortal.usercontrol
         {
 
         }
-        public void showAlert(string alertHeader, string alertMessage, string customMessage)
+        public void showAlert(string alertHeader, string alertMessage, string customMessage , [Optional] string css)
         {
             lblAlertHeader.Text = string.Empty;
             lblAlertMessage.Text = string.Empty;
@@ -25,10 +26,14 @@ namespace PropertyPortal.usercontrol
             if (alertMessage != string.Empty)
             {
                 lblAlertMessage.Text = alertMessage;
+                lblAlertMessage.CssClass = css;
+                lblAlertCustom.CssClass = css;
             }
             if (customMessage != string.Empty)
             {
                 lblAlertCustom.Text = customMessage;
+                lblAlertMessage.CssClass = css;
+                lblAlertCustom.CssClass = css;
             }
             modalStatus.Show();
         }

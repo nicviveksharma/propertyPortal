@@ -26,6 +26,7 @@ namespace PropertyPortal.usercontrol
                 BindFeatureMaster();
                 BindFacilityMaster();
                 BindUserMaster();
+                BindProperty();
             }
         }
         private void BindStateMaster()
@@ -118,6 +119,14 @@ namespace PropertyPortal.usercontrol
             drpUser.DataValueField = "pkUserID";
             drpUser.DataBind();
         }
+
+        private void BindProperty()
+        {
+            clsPropertyBAL objclsPropertyBAL = new clsPropertyBAL();
+            rptProperty.DataSource = objclsPropertyBAL.GetProperty(-1,-1);
+            rptProperty.DataBind();
+        }
+
         protected void ClearControls()
         {
             txtPropertyTitle.Text = string.Empty;
@@ -136,8 +145,11 @@ namespace PropertyPortal.usercontrol
                 objclsProperty.fkDistrictID = Convert.ToInt32(drpDistrict.SelectedValue);
                 objclsProperty.fkCityID = Convert.ToInt32(drpCity.SelectedValue);
                 objclsProperty.fkPropertyCategoryID = Convert.ToInt32(drpPropertyCategory.SelectedValue);
+                if (drpPropertyCategory.SelectedItem.Text.Contains("Rent"))
+                {
+                    objclsProperty.fkRentTypeID = Convert.ToInt32(drpRentType.SelectedValue);
+                }
                 objclsProperty.fkPropertyTypeID = Convert.ToInt32(drpPropertyType.SelectedValue);
-                objclsProperty.fkRentTypeID = Convert.ToInt32(drpRentType.SelectedValue);
                 objclsProperty.fkOwnerUserID = pkLoginID;
                 objclsProperty.propertyTitle = txtPropertyTitle.Text.Trim();
                 objclsProperty.propertyShortTitle = txtPropertyShortTitle.Text.Trim();
@@ -217,9 +229,19 @@ namespace PropertyPortal.usercontrol
                         objclsPropertyFacilityBAL.AddPropertyFacility(objclsPropertyFacility);
 
                     }
+                    
+                }
+                if (fkPropertyID != 0)
+                {
+                    ucAlert.showAlert("SUCCESS", objclsProperty.propertyTitle + "", "Added Successfully", "fw-bold text-success");
+                }
+                else if (fkPropertyID == 0)
+                {
+                    ucAlert.showAlert("WARNING", objclsProperty.propertyTitle + " Already Exists!", "Choose Another PROPERTY Name", "fw-bold text-danger");
                 }
             }
         }
+
         protected void btnUpdateProperty_Click(object sender, EventArgs e)
         {
 

@@ -31,8 +31,17 @@ namespace PropertyPortal.DAL
                     cmd.Parameters.AddWithValue("@userCompanyAddress", objclsUser.userCompanyAddress);
                     if (con.State.Equals(ConnectionState.Closed))
                         con.Open();
-                    int Result = cmd.ExecuteNonQuery();
+                    int Result = -2;
+                    SqlDataReader dr = cmd.ExecuteReader();
                     cmd.Dispose();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Result = Convert.ToInt32(dr[0]);
+                        }
+                        dr.Close();
+                    }
                     con.Close();
                     return Result;
                 }
@@ -54,9 +63,19 @@ namespace PropertyPortal.DAL
                     cmd.Parameters.AddWithValue("@isActive", objclsUser.isActive);*/
                     if (con.State.Equals(ConnectionState.Closed))
                         con.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    int Result = -2;
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    cmd.Dispose();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Result = Convert.ToInt32(dr[0]);
+                        }
+                        dr.Close();
+                    }
                     con.Close();
-                    return result;
+                    return Result;
                 }
             }
             catch (Exception ex)

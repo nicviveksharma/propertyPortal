@@ -32,11 +32,25 @@ namespace PropertyPortal.admin
             objclsPropertyType.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsPropertyTypeBAL objclsPropertyTypeBAL = new clsPropertyTypeBAL();
-            objclsPropertyTypeBAL.AddPropertyTypeMaster(objclsPropertyType);
+            
 
-            BindPropertyTypeMaster();
+            int id = objclsPropertyTypeBAL.AddPropertyTypeMaster(objclsPropertyType);
 
-            ClearControls();
+            if (id == 0)
+            {
+                btnAddPropertyType.Visible = true;
+                btnUpdatePropertyType.Visible = false;
+                modalPropertyType.Show();
+                ucAlert.showAlert("WARNING", objclsPropertyType.propertyTypeName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindPropertyTypeMaster();
+                ClearControls();
+                btnAddPropertyType.Visible = true;
+                btnUpdatePropertyType.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsPropertyType.propertyTypeName + "", "Added Successfully", "fw-bold text-success");
+            }
         }
         private void BindPropertyTypeMaster()
         {
@@ -90,7 +104,7 @@ namespace PropertyPortal.admin
             {
 
                 case ("EditPropertyTypeMaster"):
-
+                    modalPropertyType.Show();
                     pkPropertyTypeID = Convert.ToInt32(e.CommandArgument);
                     BindPropertyTypeMaster(pkPropertyTypeID);
                     btnAddPropertyType.Visible = false;
@@ -132,14 +146,34 @@ namespace PropertyPortal.admin
             objclsPropertyType.isActive = chkIsActive.Checked;
 
             clsPropertyTypeBAL objclsPropertyTypeBAL = new clsPropertyTypeBAL();
-            objclsPropertyTypeBAL.UpdatePropertyTypeMaster(objclsPropertyType, Convert.ToInt32(hidpkPropertyTypeID.Value));
+            
 
-            BindPropertyTypeMaster();
+            int id = objclsPropertyTypeBAL.UpdatePropertyTypeMaster(objclsPropertyType, Convert.ToInt32(hidpkPropertyTypeID.Value));
 
+            if (id == 0)
+            {
+                btnAddPropertyType.Visible = true;
+                btnUpdatePropertyType.Visible = false;
+                modalPropertyType.Show();
+                BindPropertyTypeMaster(Convert.ToInt32(hidpkPropertyTypeID.Value));
+                ucAlert.showAlert("WARNING", objclsPropertyType.propertyTypeName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindPropertyTypeMaster();
+                ClearControls();
+                btnAddPropertyType.Visible = true;
+                btnUpdatePropertyType.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsPropertyType.propertyTypeName + "", "Updated Successfully", "fw-bold text-success");
+            }
+            
+        }
+        protected void btnDummy_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddPropertyType.Visible = true;
             btnUpdatePropertyType.Visible = false;
+            modalPropertyType.Hide();
         }
     }
 }

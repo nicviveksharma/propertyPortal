@@ -32,11 +32,26 @@ namespace PropertyPortal.admin
             objclsPropertyCategory.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsPropertyCategoryBAL objclsPropertyCategoryBAL = new clsPropertyCategoryBAL();
-            objclsPropertyCategoryBAL.AddPropertyCategoryMaster(objclsPropertyCategory);
 
-            BindPropertyCategoryMaster();
 
-            ClearControls();
+            int id = objclsPropertyCategoryBAL.AddPropertyCategoryMaster(objclsPropertyCategory);
+
+            if (id == 0)
+            {
+                ucAlert.showAlert("WARNING", objclsPropertyCategory.propertyCategoryName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+                BindPropertyCategoryMaster();
+                ClearControls();
+                btnAddPropertyCategory.Visible = true;
+                btnUpdatePropertyCategory.Visible = false;
+            }
+            else if (id > 0)
+            {
+                ucAlert.showAlert("WARNING", objclsPropertyCategory.propertyCategoryName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+                BindPropertyCategoryMaster();
+                ClearControls();
+                btnAddPropertyCategory.Visible = true;
+                btnUpdatePropertyCategory.Visible = false;
+            }
         }
         private void BindPropertyCategoryMaster()
         {
@@ -91,6 +106,7 @@ namespace PropertyPortal.admin
 
                 case ("EditPropertyCategoryMaster"):
 
+                    modalPropertyCategory.Show();
                     pkPropertyCategoryID = Convert.ToInt32(e.CommandArgument);
                     BindPropertyCategoryMaster(pkPropertyCategoryID);
                     btnAddPropertyCategory.Visible = false;
@@ -132,14 +148,36 @@ namespace PropertyPortal.admin
             objclsPropertyCategory.isActive = chkIsActive.Checked;
 
             clsPropertyCategoryBAL objclsPropertyCategoryBAL = new clsPropertyCategoryBAL();
-            objclsPropertyCategoryBAL.UpdatePropertyCategoryMaster(objclsPropertyCategory, Convert.ToInt32(hidpkPropertyCategoryID.Value));
+            
 
-            BindPropertyCategoryMaster();
+            int id = objclsPropertyCategoryBAL.UpdatePropertyCategoryMaster(objclsPropertyCategory, Convert.ToInt32(hidpkPropertyCategoryID.Value));
 
+            if (id == 0)
+            {
+                modalPropertyCategory.Show();
+                BindPropertyCategoryMaster(Convert.ToInt32(hidpkPropertyCategoryID.Value));
+                btnAddPropertyCategory.Visible = true;
+                btnUpdatePropertyCategory.Visible = false;
+                ucAlert.showAlert("WARNING", objclsPropertyCategory.propertyCategoryName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+
+            }
+            else if (id > 0)
+            {
+                BindPropertyCategoryMaster();
+                ClearControls();
+                btnAddPropertyCategory.Visible = true;
+                btnUpdatePropertyCategory.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsPropertyCategory.propertyCategoryName + "", "Updated Successfully", "fw-bold text-success");
+            }
+
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddPropertyCategory.Visible = true;
             btnUpdatePropertyCategory.Visible = false;
+            modalPropertyCategory.Hide();
         }
     }
 }

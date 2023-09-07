@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/usercontrol/ucProperty.ascx" TagPrefix="uc1" TagName="ucProperty" %>
 
+<%@ Register Src="~/usercontrol/ucAlert.ascx" TagPrefix="uc1" TagName="ucAlert" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../assets/js/imagecompress.js"></script>
 </asp:Content>

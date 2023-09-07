@@ -46,6 +46,9 @@
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MSCaptcha, Version=2.0.1.36094, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412, processorArchitecture=MSIL">
       <HintPath>packages\MSCaptcha.1.0.0\lib\MSCaptcha.dll</HintPath>
@@ -159,11 +162,11 @@
     <Content Include="contact.aspx" />
     <Content Include="dashboard\dashboard.aspx" />
     <Content Include="dashboard\frmProperty.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="index.aspx" />
     <Content Include="adminlogin.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
-    <Content Include="manager\dashboard.aspx" />
     <Content Include="resources\css\all.min.css" />
     <Content Include="resources\css\bootstrap-icons.css" />
     <Content Include="resources\css\bootstrap.min.css" />
@@ -222,10 +225,13 @@
     <Content Include="resources\css\webfonts\fa-solid-900.svg" />
     <Content Include="usercontrol\ucAlert.ascx" />
     <Content Include="usercontrol\ucProperty.ascx" />
+    <Content Include="usercontrol\ucSearch.ascx" />
     <Content Include="usercontrol\ucUser.ascx" />
+    <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="gallery.aspx.cs">
       <DependentUpon>gallery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,6 +386,9 @@
     <Compile Include="dashboard\frmProperty.aspx.designer.cs">
       <DependentUpon>frmProperty.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -417,20 +426,6 @@
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="manager\dashboard.aspx.cs">
-      <DependentUpon>dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="manager\dashboard.aspx.designer.cs">
-      <DependentUpon>dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="managers.Master.cs">
-      <DependentUpon>managers.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="managers.Master.designer.cs">
-      <DependentUpon>managers.Master</DependentUpon>
-    </Compile>
     <Compile Include="master.Master.cs">
       <DependentUpon>master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -446,6 +441,13 @@
     <Compile Include="site.Master.designer.cs">
       <DependentUpon>site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
     <Compile Include="usercontrol\ucAlert.ascx.cs">
       <DependentUpon>ucAlert.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,12 +462,26 @@
     <Compile Include="usercontrol\ucProperty.ascx.designer.cs">
       <DependentUpon>ucProperty.ascx</DependentUpon>
     </Compile>
+    <Compile Include="usercontrol\ucSearch.ascx.cs">
+      <DependentUpon>ucSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucSearch.ascx.designer.cs">
+      <DependentUpon>ucSearch.ascx</DependentUpon>
+    </Compile>
     <Compile Include="usercontrol\ucUser.ascx.cs">
       <DependentUpon>ucUser.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="usercontrol\ucUser.ascx.designer.cs">
       <DependentUpon>ucUser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -536,7 +552,6 @@
     <Content Include="assets\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="master.Master" />
     <Content Include="dashboardMaster.Master" />
-    <Content Include="managers.Master" />
     <None Include="packages.config" />
     <Content Include="resources\lib\owlcarousel\LICENSE" />
     <Content Include="resources\lib\waypoints\links.php" />
@@ -555,6 +570,7 @@
     <Content Include="resources\css\webfonts\fa-solid-900.woff2" />
     <Content Include="resources\css\fonts\bootstrap-icons.woff" />
     <Content Include="resources\css\fonts\bootstrap-icons.woff2" />
+    <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

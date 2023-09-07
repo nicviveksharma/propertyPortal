@@ -32,11 +32,26 @@ namespace PropertyPortal.admin
             objclsFeature.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsFeatureBAL objclsFeatureBAL = new clsFeatureBAL();
-            objclsFeatureBAL.AddFeatureMaster(objclsFeature);
 
-            BindFeatureMaster();
 
-            ClearControls();
+            int id = objclsFeatureBAL.AddFeatureMaster(objclsFeature);
+
+            if (id == 0)
+            {
+                btnAddFeature.Visible = true;
+                btnUpdateFeature.Visible = false;
+                BindFeatureMaster();
+                ClearControls();
+                ucAlert.showAlert("WARNING", objclsFeature.featureName + " Already Exists!", "Choose Another Feature Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindFeatureMaster();
+                ClearControls();
+                btnAddFeature.Visible = true;
+                btnUpdateFeature.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsFeature.featureName + "", "Added Successfully", "fw-bold text-success");
+            }
         }
         private void BindFeatureMaster()
         {
@@ -91,6 +106,7 @@ namespace PropertyPortal.admin
 
                 case ("EditFeatureMaster"):
 
+                    modalfeature.Show();
                     pkFeatureID = Convert.ToInt32(e.CommandArgument);
                     BindFeatureMaster(pkFeatureID);
                     btnAddFeature.Visible = false;
@@ -130,16 +146,35 @@ namespace PropertyPortal.admin
             clsFeature objclsFeature = new clsFeature();
             objclsFeature.featureName = txtFeatureName.Text.ToString();
             objclsFeature.isActive = chkIsActive.Checked;
-
             clsFeatureBAL objclsFeatureBAL = new clsFeatureBAL();
-            objclsFeatureBAL.UpdateFeatureMaster(objclsFeature, Convert.ToInt32(hidpkFeatureID.Value));
+            int id = objclsFeatureBAL.UpdateFeatureMaster(objclsFeature, Convert.ToInt32(hidpkFeatureID.Value));
 
-            BindFeatureMaster();
+            if (id == 0)
+            {
+                modalfeature.Show();
+                BindFeatureMaster(Convert.ToInt32(hidpkFeatureID.Value));
+                ClearControls();
+                btnAddFeature.Visible = false;
+                btnUpdateFeature.Visible =  true;
+                ucAlert.showAlert("WARNING", objclsFeature.featureName + " Already Exists!", "Choose Another Feature Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindFeatureMaster();
+                ClearControls();
+                btnAddFeature.Visible = true;
+                btnUpdateFeature.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsFeature.featureName + "", "Updated Successfully", "fw-bold text-success");
+            }
+            
+        }
 
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddFeature.Visible = true;
             btnUpdateFeature.Visible = false;
+            modalfeature.Hide();
         }
     }
 }
