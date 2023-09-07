@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbPropertyPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblCity">
+    <Key>
+      <PropertyRef Name="pkCityID" />
+    </Key>
+    <Property Name="pkCityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkDistrictID" Type="Int32" Nullable="false" />
+    <Property Name="cityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblDistrict">
+    <Key>
+      <PropertyRef Name="pkDistrictID" />
+    </Key>
+    <Property Name="pkDistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkStateID" Type="Int32" Nullable="false" />
+    <Property Name="districtName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblFacility">
+    <Key>
+      <PropertyRef Name="pkFacilityID" />
+    </Key>
+    <Property Name="pkFacilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="facilityName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblFeature">
+    <Key>
+      <PropertyRef Name="pkFeatureID" />
+    </Key>
+    <Property Name="pkFeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="featureName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPropertyCategory">
+    <Key>
+      <PropertyRef Name="pkPropertyCategoryID" />
+    </Key>
+    <Property Name="pkPropertyCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="propertyCategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPropertyType">
+    <Key>
+      <PropertyRef Name="pkPropertyTypeID" />
+    </Key>
+    <Property Name="pkPropertyTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="propertyTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblRentType">
+    <Key>
+      <PropertyRef Name="pkRentTypeID" />
+    </Key>
+    <Property Name="pkRentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rentTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" Nullable="false" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblState">
+    <Key>
+      <PropertyRef Name="pkStateID" />
+    </Key>
+    <Property Name="pkStateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stateName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="createdBy" Type="Int32" Nullable="false" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="conDbPropertyPortal" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCities" EntityType="Self.tblCity" />
+    <EntitySet Name="tblDistricts" EntityType="Self.tblDistrict" />
+    <EntitySet Name="tblFacilities" EntityType="Self.tblFacility" />
+    <EntitySet Name="tblFeatures" EntityType="Self.tblFeature" />
+    <EntitySet Name="tblPropertyCategories" EntityType="Self.tblPropertyCategory" />
+    <EntitySet Name="tblPropertyTypes" EntityType="Self.tblPropertyType" />
+    <EntitySet Name="tblRentTypes" EntityType="Self.tblRentType" />
+    <EntitySet Name="tblStates" EntityType="Self.tblState" />
+    <FunctionImport Name="sp_City_Master_Get" EntitySet="tblCities" ReturnType="Collection(dbPropertyPortalModel.tblCity)">
+      <Parameter Name="fkDistrictID" Mode="In" Type="Int32" />
+      <Parameter Name="pkCityID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_District_Master_Get" EntitySet="tblDistricts" ReturnType="Collection(dbPropertyPortalModel.tblDistrict)">
+      <Parameter Name="fkStateID" Mode="In" Type="Int32" />
+      <Parameter Name="pkDistrictID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Facility_Master_Get" EntitySet="tblFacilities" ReturnType="Collection(dbPropertyPortalModel.tblFacility)">
+      <Parameter Name="pkFacilityID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Feature_Master_Get" EntitySet="tblFeatures" ReturnType="Collection(dbPropertyPortalModel.tblFeature)">
+      <Parameter Name="pkFeatureID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PropertyCategory_Master_Get" EntitySet="tblPropertyCategories" ReturnType="Collection(dbPropertyPortalModel.tblPropertyCategory)">
+      <Parameter Name="pkPropertyCategoryID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PropertyType_Master_Get" EntitySet="tblPropertyTypes" ReturnType="Collection(dbPropertyPortalModel.tblPropertyType)">
+      <Parameter Name="pkPropertyTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_RentType_Master_Get" EntitySet="tblRentTypes" ReturnType="Collection(dbPropertyPortalModel.tblRentType)">
+      <Parameter Name="pkRentTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_State_Master_Get" EntitySet="tblStates" ReturnType="Collection(dbPropertyPortalModel.tblState)">
+      <Parameter Name="pkStateID" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_City_Master_Get_Result">
+    <Property Type="Int32" Name="fkDistrictID" Nullable="false" />
+    <Property Type="String" Name="districtName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="pkCityID" Nullable="false" />
+    <Property Type="String" Name="cityName" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_District_Master_Get_Result">
+    <Property Type="Int32" Name="fkStateID" Nullable="false" />
+    <Property Type="String" Name="stateName" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="pkDistrictID" Nullable="false" />
+    <Property Type="String" Name="districtName" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_Facility_Master_Get_Result">
+    <Property Type="Int32" Name="pkFacilityID" Nullable="false" />
+    <Property Type="String" Name="facilityName" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_Feature_Master_Get_Result">
+    <Property Type="Int32" Name="pkFeatureID" Nullable="false" />
+    <Property Type="String" Name="featureName" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_PropertyCategory_Master_Get_Result">
+    <Property Type="Int32" Name="pkPropertyCategoryID" Nullable="false" />
+    <Property Type="String" Name="propertyCategoryName" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_PropertyType_Master_Get_Result">
+    <Property Type="Int32" Name="pkPropertyTypeID" Nullable="false" />
+    <Property Type="String" Name="propertyTypeName" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_RentType_Master_Get_Result">
+    <Property Type="Int32" Name="pkRentTypeID" Nullable="false" />
+    <Property Type="String" Name="rentTypeName" Nullable="false" MaxLength="20" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_State_Master_Get_Result">
+    <Property Type="Int32" Name="pkStateID" Nullable="false" />
+    <Property Type="String" Name="stateName" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+</Schema>

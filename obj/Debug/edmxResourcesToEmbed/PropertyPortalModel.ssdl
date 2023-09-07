@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbPropertyPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCity">
+    <Key>
+      <PropertyRef Name="pkCityID" />
+    </Key>
+    <Property Name="pkCityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fkDistrictID" Type="int" Nullable="false" />
+    <Property Name="cityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblDistrict">
+    <Key>
+      <PropertyRef Name="pkDistrictID" />
+    </Key>
+    <Property Name="pkDistrictID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fkStateID" Type="int" Nullable="false" />
+    <Property Name="districtName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblFacility">
+    <Key>
+      <PropertyRef Name="pkFacilityID" />
+    </Key>
+    <Property Name="pkFacilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="facilityName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblFeature">
+    <Key>
+      <PropertyRef Name="pkFeatureID" />
+    </Key>
+    <Property Name="pkFeatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="featureName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPropertyCategory">
+    <Key>
+      <PropertyRef Name="pkPropertyCategoryID" />
+    </Key>
+    <Property Name="pkPropertyCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="propertyCategoryName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPropertyType">
+    <Key>
+      <PropertyRef Name="pkPropertyTypeID" />
+    </Key>
+    <Property Name="pkPropertyTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="propertyTypeName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRentType">
+    <Key>
+      <PropertyRef Name="pkRentTypeID" />
+    </Key>
+    <Property Name="pkRentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rentTypeName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblState">
+    <Key>
+      <PropertyRef Name="pkStateID" />
+    </Key>
+    <Property Name="pkStateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stateName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="createdBy" Type="int" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Function Name="sp_City_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fkDistrictID" Type="int" Mode="In" />
+    <Parameter Name="pkCityID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_District_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fkStateID" Type="int" Mode="In" />
+    <Parameter Name="pkDistrictID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Facility_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pkFacilityID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Feature_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pkFeatureID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PropertyCategory_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pkPropertyCategoryID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PropertyType_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pkPropertyTypeID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_RentType_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pkRentTypeID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_State_Master_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pkStateID" Type="int" Mode="In" />
+    <Parameter Name="isActive" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="dbPropertyPortalModelStoreContainer">
+    <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFacility" EntityType="Self.tblFacility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFeature" EntityType="Self.tblFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPropertyCategory" EntityType="Self.tblPropertyCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPropertyType" EntityType="Self.tblPropertyType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRentType" EntityType="Self.tblRentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

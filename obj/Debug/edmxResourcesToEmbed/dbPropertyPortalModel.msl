@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbPropertyPortalModelStoreContainer" CdmEntityContainer="dbPropertyPortalEntities">
+    <EntitySetMapping Name="tblCities">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblCity">
+        <MappingFragment StoreEntitySet="tblCity">
+          <ScalarProperty Name="pkCityID" ColumnName="pkCityID" />
+          <ScalarProperty Name="fkDistrictID" ColumnName="fkDistrictID" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDistricts">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblDistrict">
+        <MappingFragment StoreEntitySet="tblDistrict">
+          <ScalarProperty Name="pkDistrictID" ColumnName="pkDistrictID" />
+          <ScalarProperty Name="fkStateID" ColumnName="fkStateID" />
+          <ScalarProperty Name="districtName" ColumnName="districtName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFacilities">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblFacility">
+        <MappingFragment StoreEntitySet="tblFacilities">
+          <ScalarProperty Name="pkFacilityID" ColumnName="pkFacilityID" />
+          <ScalarProperty Name="facilityName" ColumnName="facilityName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFeatures">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblFeature">
+        <MappingFragment StoreEntitySet="tblFeatures">
+          <ScalarProperty Name="pkFeatureID" ColumnName="pkFeatureID" />
+          <ScalarProperty Name="featureName" ColumnName="featureName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPropertyCategories">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblPropertyCategory">
+        <MappingFragment StoreEntitySet="tblPropertyCategory">
+          <ScalarProperty Name="pkPropertyCategoryID" ColumnName="pkPropertyCategoryID" />
+          <ScalarProperty Name="propertyCategoryName" ColumnName="propertyCategoryName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPropertyTypes">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblPropertyType">
+        <MappingFragment StoreEntitySet="tblPropertyType">
+          <ScalarProperty Name="pkPropertyTypeID" ColumnName="pkPropertyTypeID" />
+          <ScalarProperty Name="propertyTypeName" ColumnName="propertyTypeName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRentTypes">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblRentType">
+        <MappingFragment StoreEntitySet="tblRentType">
+          <ScalarProperty Name="pkRentTypeID" ColumnName="pkRentTypeID" />
+          <ScalarProperty Name="rentTypeName" ColumnName="rentTypeName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStates">
+      <EntityTypeMapping TypeName="dbPropertyPortalModel.tblState">
+        <MappingFragment StoreEntitySet="tblState">
+          <ScalarProperty Name="pkStateID" ColumnName="pkStateID" />
+          <ScalarProperty Name="stateName" ColumnName="stateName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

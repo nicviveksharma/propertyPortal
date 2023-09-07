@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+	<admin>1</admin>
+	<user>2</user>
+	<admindashboard>https://localhost:44385/admin/dashboard.aspx</admindashboard>
+	<userdashboard>https://localhost:44385/dashboard/dashboard.aspx</userdashboard>
+</settings>
