@@ -1,6 +1,7 @@
 ﻿using PropertyPortal.BAL;
 using PropertyPortal.BO;
 using PropertyPortal.DAL;
+using PropertyPortal.usercontrol;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,11 +35,24 @@ namespace PropertyPortal.admin
             objclsDistrict.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsDistrictBAL objclsDistrictBAL = new clsDistrictBAL();
-            objclsDistrictBAL.AddDistrictMaster(objclsDistrict);
+            int id = objclsDistrictBAL.AddDistrictMaster(objclsDistrict);
 
-            BindDistrictMaster();
-
-            ClearControls();
+            if (id == 0)
+            {
+                modaldistrict.Show();
+                btnAddDistrict.Visible = true;
+                btnUpdateDistrict.Visible = false;
+                ucAlert.showAlert("WARNING", objclsDistrict.districtName + " Already Exists!", "Choose Another District Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindDistrictMaster();
+                ClearControls();
+                btnAddDistrict.Visible = true;
+                btnUpdateDistrict.Visible = false;
+                drpState.Enabled = true;
+                ucAlert.showAlert("SUCCESS", objclsDistrict.districtName + "", "Added Successfully", "fw-bold text-success");
+            }
         }
 
         private void BindStateMaster()
@@ -102,8 +116,10 @@ namespace PropertyPortal.admin
 
                 case ("EditDistrictMaster"):
 
+                    modaldistrict.Show();
                     pkDistrictID = Convert.ToInt32(e.CommandArgument);
                     BindDistrictMaster(pkDistrictID);
+                    drpState.Enabled = false;
                     btnAddDistrict.Visible = false;
                     btnUpdateDistrict.Visible = true;
                     break;
@@ -141,16 +157,37 @@ namespace PropertyPortal.admin
             clsDistrict objclsDistrict = new clsDistrict();
             objclsDistrict.districtName = txtDistrictName.Text.ToString();
             objclsDistrict.isActive = chkIsActive.Checked;
-
+            objclsDistrict.fkStateID = Convert.ToInt32(drpState.SelectedValue);
             clsDistrictBAL objclsDistrictBAL = new clsDistrictBAL();
-            objclsDistrictBAL.UpdateDistrictMaster(objclsDistrict, Convert.ToInt32(hidpkDistrictID.Value));
 
-            BindDistrictMaster();
 
+            int id = objclsDistrictBAL.UpdateDistrictMaster(objclsDistrict, Convert.ToInt32(hidpkDistrictID.Value));
+
+            if (id == 0)
+            {
+                modaldistrict.Show();
+                BindDistrictMaster(Convert.ToInt32(hidpkDistrictID.Value));
+                btnAddDistrict.Visible = false;
+                btnUpdateDistrict.Visible = true;
+                ucAlert.showAlert("WARNING", objclsDistrict.districtName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindDistrictMaster();
+                ClearControls();
+                btnAddDistrict.Visible = true;
+                btnUpdateDistrict.Visible = false;
+                drpState.Enabled = true;
+                ucAlert.showAlert("SUCCESS", objclsDistrict.districtName + "", "Updated Successfully", "fw-bold text-success");
+            }
+        }
+
+        protected void btnClosedistrict_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddDistrict.Visible = true;
             btnUpdateDistrict.Visible = false;
+            modaldistrict.Hide();
         }
     }
 }

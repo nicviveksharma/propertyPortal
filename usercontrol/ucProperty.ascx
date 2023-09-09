@@ -182,7 +182,7 @@
                                         <asp:Label ID="lblFacilityName" Text='<%#Eval("facilityName") %>' runat="server"></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtFacilityDistance" runat="server" TextMode="Number" placeholder="Enter Distance"></asp:TextBox>
+                                        <asp:TextBox ID="txtFacilityDistance" runat="server" TextMode="Number" min="0" placeholder="Enter Distance"></asp:TextBox>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -201,21 +201,15 @@
                 <div class="forms-sample">
                     <div class="form-group">
                         <label for="txtPropertyYoutubeLink">Youtube Link:</label>
-                        <asp:TextBox ID="txtPropertyYoutubeLink" CssClass="form-control form-control-sm" runat="server" placeholder="Yotube Link" ValidationGroup="validate"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="reqtxtPropertyYoutubeLink" runat="server" ControlToValidate="txtPropertyYoutubeLink" Display="Dynamic"
-                            ErrorMessage="* - Required" CssClass="text-danger text-small fw-bold" ValidationGroup="validate"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtPropertyYoutubeLink" CssClass="form-control form-control-sm" runat="server" placeholder="Yotube Link" ></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label for="txtPropertySEOTitle">SEO Title:</label>
-                        <asp:TextBox ID="txtPropertySEOTitle" CssClass="form-control form-control-sm" runat="server" placeholder="SEO Title" ValidationGroup="validate"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPropertySEOTitle" Display="Dynamic"
-                            ErrorMessage="* - Required" CssClass="text-danger text-small fw-bold" ValidationGroup="validate"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtPropertySEOTitle" CssClass="form-control form-control-sm" runat="server" placeholder="SEO Title" ></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label for="txtPropertySEODescription">SEO Description:</label>
-                        <asp:TextBox ID="txtPropertySEODescription" TextMode="MultiLine" Rows="3" CssClass="form-control form-control-sm" runat="server" placeholder="SEO Description" ValidationGroup="validate"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="reqtxtPropertySEODescription" runat="server" ControlToValidate="txtPropertySEODescription" Display="Dynamic"
-                            ErrorMessage="* - Required" CssClass="text-danger text-small fw-bold" ValidationGroup="validate"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtPropertySEODescription" TextMode="MultiLine" Rows="3" CssClass="form-control form-control-sm" runat="server" placeholder="SEO Description" ></asp:TextBox>
                     </div>
                 </div>
 
@@ -289,12 +283,14 @@
             </div>
         </div>
         <div class="card mt-2">
-            <div class="card-body">
-                <div class="forms-sample">
-                    <div class="form-check form-check-flat form-check-primary">
-                        <span class="form-check-label">
-                            <asp:CheckBoxList ID="chkPropertyFeature" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
-                        </span>
+            <div class="card">
+                <div class="card-body">
+                    <div class="forms-sample">
+                        <div class="form-check form-check-flat form-check-primary">
+                                                            
+                                <asp:CheckBoxList ID="chkPropertyFeature" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
+                           
+                        </div>
                     </div>
                 </div>
             </div>
@@ -348,7 +344,7 @@
                     <ItemTemplate>
                         <tr>
                             <td><%# Container.ItemIndex + 1 + "." %></td>
-                            <td><%# Eval("stateName") %> </td>
+                            <td><%# Eval("propertyTitle") %> </td>
                             <td><%# Convert.ToBoolean(Eval("isActive")) ? "Yes" : "No" %> </td>
                             <td>
                                 <asp:Button ID="btnEditProperty" runat="server" CssClass="btn btn-sm btn-gradient-warning"

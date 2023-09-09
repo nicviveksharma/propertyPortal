@@ -55,9 +55,8 @@ namespace PropertyPortal.DAL
                     cmd.Parameters.AddWithValue("@verifiedOn", objclsProperty.verifiedOn);
 
                     if (con.State.Equals(ConnectionState.Closed))
-                        con.Open();
-
-                    int Result = 0; ;
+                    con.Open();
+                    int Result = 0;
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.HasRows)
@@ -114,9 +113,18 @@ namespace PropertyPortal.DAL
                     cmd.Parameters.AddWithValue("@modifiedOn", objclsProperty.modifiedOn);
                     if (con.State.Equals(ConnectionState.Closed))
                         con.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    int Result = -2;
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    cmd.Dispose();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Result = Convert.ToInt32(dr[0]);
+                        }
+                    }
                     con.Close();
-                    return result;
+                    return Result;
                 }
             }
             catch (Exception ex)

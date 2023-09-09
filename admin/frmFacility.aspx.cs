@@ -1,16 +1,8 @@
 ﻿using PropertyPortal.BAL;
 using PropertyPortal.BO;
-using PropertyPortal.DAL;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace PropertyPortal.admin
 {
@@ -30,13 +22,25 @@ namespace PropertyPortal.admin
             objclsFacility.facilityName = txtFacilityName.Text.ToString();
             objclsFacility.isActive = chkIsActive.Checked;
             objclsFacility.createdBy = Convert.ToInt32(Session["pkLoginID"]);
-
             clsFacilityBAL objclsFacilityBAL = new clsFacilityBAL();
-            objclsFacilityBAL.AddFacilityMaster(objclsFacility);
 
-            BindFacilityMaster();
+            int id = objclsFacilityBAL.AddFacilityMaster(objclsFacility);
 
-            ClearControls();
+            if (id == 0)
+            {
+                modalfacilityity.Show();
+                btnAddFacility.Visible = false;
+                btnUpdateFacility.Visible = true;
+                ucAlert.showAlert("WARNING", objclsFacility.facilityName + " Already Exists!", "Choose Another Facility Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindFacilityMaster();
+                ClearControls();
+                btnAddFacility.Visible = false;
+                btnUpdateFacility.Visible = true;
+                ucAlert.showAlert("SUCCESS", objclsFacility.facilityName + "", "Added Successfully", "fw-bold text-success");
+            }
         }
         private void BindFacilityMaster()
         {
@@ -91,6 +95,7 @@ namespace PropertyPortal.admin
 
                 case ("EditFacilityMaster"):
 
+                    modalfacilityity.Show();
                     pkFacilityID = Convert.ToInt32(e.CommandArgument);
                     BindFacilityMaster(pkFacilityID);
                     btnAddFacility.Visible = false;
@@ -132,14 +137,33 @@ namespace PropertyPortal.admin
             objclsFacility.isActive = chkIsActive.Checked;
 
             clsFacilityBAL objclsFacilityBAL = new clsFacilityBAL();
-            objclsFacilityBAL.UpdateFacilityMaster(objclsFacility, Convert.ToInt32(hidpkFacilityID.Value));
 
-            BindFacilityMaster();
+            int id = objclsFacilityBAL.UpdateFacilityMaster(objclsFacility, Convert.ToInt32(hidpkFacilityID.Value));
 
+            if (id == 0)
+            {
+                modalfacilityity.Show();
+                BindFacilityMaster(Convert.ToInt32(hidpkFacilityID.Value));  
+                btnAddFacility.Visible = false;
+                btnUpdateFacility.Visible = true;
+                ucAlert.showAlert("WARNING", objclsFacility.facilityName + " Already Exists!", "Choose Another Facility Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindFacilityMaster();
+                ClearControls();
+                btnAddFacility.Visible = true;
+                btnUpdateFacility.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsFacility.facilityName + "", "Updated Successfully", "fw-bold text-success");
+            }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddFacility.Visible = true;
             btnUpdateFacility.Visible = false;
+            modalfacilityity.Hide();
         }
     }
 }

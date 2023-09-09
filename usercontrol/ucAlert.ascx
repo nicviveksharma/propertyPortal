@@ -2,7 +2,7 @@
 <asp:Button ID="btnDummy" CssClass="btn btn-sm" runat="server" Text="" />
 <ajaxToolkit:ModalPopupExtender ID="modalStatus" runat="server" TargetControlID="btnDummy"
     PopupControlID="pnlModal" BackgroundCssClass="modalBackground" CancelControlID="btnClose" />
-<asp:Panel ID="pnlModal" runat="server" CssClass="modalPopup" Style="display: none">
+<asp:Panel ID="pnlModal" runat="server" CssClass="modalPopup" Style="display: none;z-index:999999 !important;">
     <div class="col-md-12">
         <div class="alert alert-success" role="alert">
             <h4 class="fw-bold">
