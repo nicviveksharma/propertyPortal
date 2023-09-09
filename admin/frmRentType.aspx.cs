@@ -32,11 +32,23 @@ namespace PropertyPortal.admin
             objclsRentType.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsRentTypeBAL objclsRentTypeBAL = new clsRentTypeBAL();
-            objclsRentTypeBAL.AddRentTypeMaster(objclsRentType);
+            
 
-            BindRentTypeMaster();
+            int id = objclsRentTypeBAL.AddRentTypeMaster(objclsRentType);
 
-            ClearControls();
+            if (id == 0)
+            {
+                
+                ucAlert.showAlert("WARNING", objclsRentType.rentTypeName + " Already Exists!", "Choose Another Rent Type Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindRentTypeMaster();
+                ClearControls();
+                btnAddRentType.Visible = true;
+                btnUpdateRentType.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsRentType.rentTypeName + "", "Updated Successfully", "fw-bold text-success");
+            }
         }
         private void BindRentTypeMaster()
         {
@@ -91,6 +103,7 @@ namespace PropertyPortal.admin
 
                 case ("EditRentTypeMaster"):
 
+                    modalRentType.Show();
                     pkRentTypeID = Convert.ToInt32(e.CommandArgument);
                     BindRentTypeMaster(pkRentTypeID);
                     btnAddRentType.Visible = false;
@@ -132,14 +145,34 @@ namespace PropertyPortal.admin
             objclsRentType.isActive = chkIsActive.Checked;
 
             clsRentTypeBAL objclsRentTypeBAL = new clsRentTypeBAL();
-            objclsRentTypeBAL.UpdateRentTypeMaster(objclsRentType, Convert.ToInt32(hidpkRentTypeID.Value));
+            
 
-            BindRentTypeMaster();
+            int id = objclsRentTypeBAL.UpdateRentTypeMaster(objclsRentType, Convert.ToInt32(hidpkRentTypeID.Value));
 
+            if (id == 0)
+            {
+                modalRentType.Show();
+                BindRentTypeMaster(Convert.ToInt32(hidpkRentTypeID.Value));
+                btnAddRentType.Visible = false;
+                btnUpdateRentType.Visible = true;
+                ucAlert.showAlert("WARNING", objclsRentType.rentTypeName + " Already Exists!", "Choose Another Rent Type Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindRentTypeMaster();
+                ClearControls();
+                btnAddRentType.Visible = true;
+                btnUpdateRentType.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsRentType.rentTypeName + "", "Updated Successfully", "fw-bold text-success");
+            }
+            
+        }
+        protected void btnClosedistrict_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
             btnAddRentType.Visible = true;
             btnUpdateRentType.Visible = false;
+            modalRentType.Hide();
         }
     }
 }

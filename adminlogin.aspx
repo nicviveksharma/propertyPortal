@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <asp:TextBox ID="txtcaptcha" CssClass="form-control" runat="server" placeholder="Enter Captcha"></asp:TextBox>
+                                            <asp:TextBox ID="txtcaptcha" CssClass="form-control" runat="server" placeholder="Enter Captcha" Text=""></asp:TextBox>
                                             <label for="txtcaptcha">Enter Captcha</label>
                                             <asp:RequiredFieldValidator ID="reqtxtcaptcha" Display="Dynamic" ErrorMessage="* - Required" CssClass="text-danger errormessage" runat="server"
                                                 ControlToValidate="txtcaptcha" ValidationGroup="error">
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="btn btn-dark border-0 w-50 py-3" ValidationGroup="error" />
+                                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" TabIndex="4" CssClass="btn btn-dark border-0 w-50 py-3" ValidationGroup="error" />
                                         <a href="#" class="auth-link text-black">Forgot password?</a>
                                     </div>
                                 </div>

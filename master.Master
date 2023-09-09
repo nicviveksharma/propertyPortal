@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/css/style.css" />
+    <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/css/custom.css" />
     <link rel="shortcut icon" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/images/favicon.ico" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

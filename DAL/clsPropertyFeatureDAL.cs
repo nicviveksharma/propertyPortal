@@ -25,8 +25,16 @@ namespace PropertyPortal.DAL
                     cmd.Parameters.AddWithValue("@fkFeatureID", objclsPropertyFeature.fkFeatureID);
                     if (con.State.Equals(ConnectionState.Closed))
                         con.Open();
-                    int Result = cmd.ExecuteNonQuery();
+                    int Result = -2;
+                    SqlDataReader dr = cmd.ExecuteReader();
                     cmd.Dispose();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Result = Convert.ToInt32(dr[0]);
+                        }
+                    }
                     con.Close();
                     return Result;
                 }
@@ -48,9 +56,18 @@ namespace PropertyPortal.DAL
                     cmd.Parameters.AddWithValue("@isActive", objclsPropertyFeature.isActive);*/
                     if (con.State.Equals(ConnectionState.Closed))
                         con.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    int Result = -2;
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    cmd.Dispose();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            Result = Convert.ToInt32(dr[0]);
+                        }
+                    }
                     con.Close();
-                    return result;
+                    return Result;
                 }
             }
             catch (Exception ex)

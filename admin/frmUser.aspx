@@ -2,6 +2,7 @@
 
 <%@ Register Src="~/usercontrol/ucUser.ascx" TagPrefix="uc1" TagName="ucUser" %>
 
+<%@ Register Src="~/usercontrol/ucAlert.ascx" TagPrefix="uc1" TagName="ucAlert" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

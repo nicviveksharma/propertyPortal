@@ -35,11 +35,26 @@ namespace PropertyPortal.admin
             objclsCity.createdBy = Convert.ToInt32(Session["pkLoginID"]);
 
             clsCityBAL objclsCityBAL = new clsCityBAL();
-            objclsCityBAL.AddCityMaster(objclsCity);
 
-            BindCityMaster();
 
-            ClearControls();
+            int id = objclsCityBAL.AddCityMaster(objclsCity);
+
+            if (id == 0)
+            {
+                modalcity.Show();
+                drpDistrict.Enabled = false;
+                btnAddCity.Visible = true;
+                ucAlert.showAlert("WARNING", objclsCity.cityName + " Already Exists!", "Choose Another State Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindCityMaster();
+                ClearControls();
+                drpDistrict.Enabled = true;
+                btnAddCity.Visible = true;
+                btnUpdateCity.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsCity.cityName + "", "Added Successfully", "fw-bold text-success");
+            }
         }
 
         private void BindDistrictMaster()
@@ -104,8 +119,10 @@ namespace PropertyPortal.admin
 
                 case ("EditCityMaster"):
 
+                    modalcity.Show();
                     pkCityID = Convert.ToInt32(e.CommandArgument);
                     BindCityMaster(pkCityID);
+                    drpDistrict.Enabled = false;
                     btnAddCity.Visible = false;
                     btnUpdateCity.Visible = true;
                     break;
@@ -141,18 +158,38 @@ namespace PropertyPortal.admin
         protected void btnUpdateCity_Click(object sender, EventArgs e)
         {
             clsCity objclsCity = new clsCity();
+            objclsCity.fkDistrictID = Convert.ToInt32(drpDistrict.SelectedValue);
             objclsCity.cityName = txtCityName.Text.ToString();
             objclsCity.isActive = chkIsActive.Checked;
-
             clsCityBAL objclsCityBAL = new clsCityBAL();
-            objclsCityBAL.UpdateCityMaster(objclsCity, Convert.ToInt32(hidpkCityID.Value));
 
-            BindCityMaster();
+            int id = objclsCityBAL.UpdateCityMaster(objclsCity, Convert.ToInt32(hidpkCityID.Value));
 
+            if (id == 0)
+            {
+                modalcity.Show();
+                drpDistrict.Enabled = false;
+                btnAddCity.Visible = false;
+                ucAlert.showAlert("WARNING", objclsCity.cityName + " Already Exists!", "Choose Another City Name", "fw-bold text-danger");
+            }
+            else if (id > 0)
+            {
+                BindDistrictMaster();
+                ClearControls();
+                drpDistrict.Enabled = true;
+                btnAddCity.Visible = true;
+                btnUpdateCity.Visible = false;
+                ucAlert.showAlert("SUCCESS", objclsCity.cityName + "", "Updated Successfully", "fw-bold text-success");
+            }
+
+        }
+        protected void btnCloseCity_Click(object sender, EventArgs e)
+        {
             ClearControls();
-
+            drpDistrict.Visible = true;
             btnAddCity.Visible = true;
             btnUpdateCity.Visible = false;
+            modalcity.Hide();
         }
     }
 }
