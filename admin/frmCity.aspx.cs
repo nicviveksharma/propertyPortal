@@ -174,7 +174,7 @@ namespace PropertyPortal.admin
             }
             else if (id > 0)
             {
-                BindDistrictMaster();
+                BindCityMaster();
                 ClearControls();
                 drpDistrict.Enabled = true;
                 btnAddCity.Visible = true;
