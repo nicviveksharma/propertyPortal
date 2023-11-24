@@ -184,5 +184,30 @@ namespace PropertyPortal.DAL
                 }
             }
         }
+
+        public DataTable GetPropertyMaster(int pkPropertyID, int isActive)
+        {
+            using (cmd = new SqlCommand("sp_Property_Master_Get", con))
+            {
+                try
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@pkPropertyID", pkPropertyID);
+                    cmd.Parameters.AddWithValue("@isActive", isActive);
+                    if (con.State.Equals(ConnectionState.Closed))
+                        con.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
     }
 }

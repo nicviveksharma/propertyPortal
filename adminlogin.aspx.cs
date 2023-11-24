@@ -26,14 +26,13 @@ namespace PropertyPortal
         {
             if (IsValid)
             {
-                cptCaptcha.ValidateCaptcha(txtcaptcha.Text.Trim());
+                cptCaptcha.ValidateCaptcha(txtCaptcha.Text.Trim());
                 if (cptCaptcha.UserValidated)
                 {
                     if (txtPassword.Text.Trim() != string.Empty)
                     {
                         clsLoginBAL objclsLoginBAL = new clsLoginBAL();
-                        DataTable dtLogin = objclsLoginBAL.GetLogin(txtUsername.Text,
-                                                                    Convert.ToInt32(functions.clsCommonFunctions.getConfig("admin")));
+                        DataTable dtLogin = objclsLoginBAL.GetLogin(txtUsername.Text, Convert.ToInt32(drpLoginRole.SelectedValue));
                         if (dtLogin.Rows.Count > 0)
                         {
                             string pass = functions.clsLoginFunctions.HashPassword(txtPassword.Text, dtLogin.Rows[0]["loginSalt"].ToString());
@@ -45,13 +44,21 @@ namespace PropertyPortal
                                 bool isActive = Convert.ToBoolean(dtLogin.Rows[0]["isActive"]);
                                 if (isActive)
                                 {
-                                    if( 1 == 1)
-                                    //if (pass == pass2)
+                                    //if( 1 == 1)
+                                    if (pass == pass2)
                                     {
+                                        string userRole = dtLogin.Rows[0]["loginRole"].ToString();
                                         Session["pkLoginID"] = dtLogin.Rows[0]["pkLoginID"];
                                         Session["loginRole"] = dtLogin.Rows[0]["loginRole"];
                                         Session["userFirstName"] = dtLogin.Rows[0]["fullName"];
-                                        Response.Redirect(functions.clsCommonFunctions.getConfig("admindashboard"));
+                                        if(userRole== functions.clsCommonFunctions.getConfig("admin"))
+                                        {
+                                            Response.Redirect(functions.clsCommonFunctions.getConfig("admindashboard"));
+                                        }
+                                        if (userRole == functions.clsCommonFunctions.getConfig("manager"))
+                                        {
+                                            Response.Redirect(functions.clsCommonFunctions.getConfig("managerdashboard"));
+                                        }
                                     }
                                     else
                                     {

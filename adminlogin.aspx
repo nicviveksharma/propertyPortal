@@ -22,6 +22,22 @@
                                 <div class="row g-3">
                                     <div class="col-md-12">
                                         <div class="form-floating">
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <asp:DropDownList ID="drpLoginRole" CssClass="form-control form-control-lg" runat="server">
+                                                        <asp:ListItem Text="--Select Login Role--" Value=""></asp:ListItem>
+                                                        <asp:ListItem Text="Admin" Value="1"></asp:ListItem>
+                                                        <asp:ListItem Text="Manager" Value="2"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="reqdrpLoginRole" Display="Dynamic" ErrorMessage="* - Required" CssClass="text-danger errormessage" runat="server"
+                                                        ControlToValidate="drpLoginRole" ValidationGroup="error">
+                                                    </asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
                                             <asp:TextBox ID="txtUsername" CssClass="form-control form-control-lg" runat="server" placeholder="Enter Username"></asp:TextBox>
                                             <label for="txtUsername">Enter Username</label>
                                             <asp:RequiredFieldValidator ID="reqtxtUsername" Display="Dynamic" ErrorMessage="* - Required" CssClass="text-danger errormessage" runat="server"
@@ -40,10 +56,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <asp:TextBox ID="txtcaptcha" CssClass="form-control" runat="server" placeholder="Enter Captcha" Text=""></asp:TextBox>
-                                            <label for="txtcaptcha">Enter Captcha</label>
+                                            <asp:TextBox ID="txtCaptcha" CssClass="form-control" runat="server" placeholder="Enter Captcha" Text=""></asp:TextBox>
+                                            <label for="txtCaptcha">Enter Captcha</label>
                                             <asp:RequiredFieldValidator ID="reqtxtcaptcha" Display="Dynamic" ErrorMessage="* - Required" CssClass="text-danger errormessage" runat="server"
-                                                ControlToValidate="txtcaptcha" ValidationGroup="error">
+                                                ControlToValidate="txtCaptcha" ValidationGroup="error">
                                             </asp:RequiredFieldValidator>
                                         </div>
                                     </div>

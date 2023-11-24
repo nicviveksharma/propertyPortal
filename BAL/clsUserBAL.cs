@@ -36,12 +36,12 @@ namespace PropertyPortal.BAL
             }
         }
 
-        public DataTable GetUser(int fkLoginID, int isActive, int isVerified) // passing Bussiness object Here  
+        public DataTable GetUser(int fkLoginID,int loginRole, int isActive, int isVerified) // passing Bussiness object Here  
         {
             try
             {
                 clsUserDAL objclsUserDAL = new clsUserDAL(); // Creating object of Dataccess  
-                return objclsUserDAL.GetUser(fkLoginID, isActive, isVerified); // calling Method of DataAccess  
+                return objclsUserDAL.GetUser(fkLoginID, loginRole, isActive, isVerified); // calling Method of DataAccess  
             }
             catch
             {

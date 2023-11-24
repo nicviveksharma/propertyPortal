@@ -10,7 +10,7 @@ namespace PropertyPortal
             // Clear the user's session
             Session.Clear();
 
-            // Redirect to the login page
+            // Redirect to the login page 
             Response.Redirect(ConfigurationManager.AppSettings["siteurl"].ToString() + "login.aspx");
         }
 

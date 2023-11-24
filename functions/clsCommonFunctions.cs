@@ -12,15 +12,12 @@ namespace PropertyPortal.functions
         public static string getConfig(string configSetting)
         {
             try
-            {
-                //settingsFilePath is a string variable storing the path of the settings file 
+            {                
                 XPathDocument doc = new XPathDocument(ConfigurationManager.AppSettings["siteurl"].ToString() + "config/config.xml");
-                XPathNavigator nav = doc.CreateNavigator();
-                // Compile a standard XPath expression
+                XPathNavigator nav = doc.CreateNavigator();             
                 XPathExpression expr;
                 expr = nav.Compile(@"/settings/" + configSetting);
-                XPathNodeIterator iterator = nav.Select(expr);
-                // Iterate on the node set
+                XPathNodeIterator iterator = nav.Select(expr);                
                 while (iterator.MoveNext())
                 {
                     return iterator.Current.Value;

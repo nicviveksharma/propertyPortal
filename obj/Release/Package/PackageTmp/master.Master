@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/css/style.css" />
+    <link rel="stylesheet" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/css/custom.css" />
     <link rel="shortcut icon" href="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/images/favicon.ico" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -20,7 +21,7 @@
                 <a class="navbar-brand brand-logo" href="index.html">
                     <img src="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/images/logo.png" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/images/logo.png" alt="logo" /></a>
+                    <img src="<%= ConfigurationManager.AppSettings["siteurl"].ToString()%>assets/images/logo-m.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -108,17 +109,44 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="frmUser.aspx">
-                            <span class="menu-title">Users</span>
-                            <i class="mdi mdi-contacts menu-icon"></i>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-manager" aria-expanded="false" aria-controls="ui-manager">
+                            <span class="menu-title">Managers</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-supervisor-circle menu-icon"></i>
                         </a>
+                        <div class="collapse" id="ui-manager">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link" href="frmAllManagers.aspx">All Managers</a></li>
+                                <li class="nav-item"><a class="nav-link" href="frmManager.aspx">Add New Manager</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="frmProperty.aspx">
-                            <span class="menu-title">Properties</span>
-                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-users" aria-expanded="false" aria-controls="ui-users">
+                            <span class="menu-title">Property Agents</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-supervisor menu-icon"></i>
                         </a>
+                        <div class="collapse" id="ui-users">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link" href="frmAllUsers.aspx">All Agents</a></li>
+                                <li class="nav-item"><a class="nav-link" href="frmUser.aspx">Add New Agent</a></li>
+                            </ul>
+                        </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-property" aria-expanded="false" aria-controls="ui-property">
+                            <span class="menu-title">Properties</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-home-floor-0 menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-property">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link" href="frmAllProperties.aspx">All Properties</a></li>
+                                <li class="nav-item"><a class="nav-link" href="frmProperty.aspx">Add New Property</a></li>
+                            </ul>
+                        </div>
+                    </li>                    
                 </ul>
             </nav>
             <div class="main-panel">

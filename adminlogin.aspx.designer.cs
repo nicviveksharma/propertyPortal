@@ -42,6 +42,24 @@ namespace PropertyPortal
         protected global::PropertyPortal.usercontrol.ucAlert ucAlert;
 
         /// <summary>
+        /// drpLoginRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpLoginRole;
+
+        /// <summary>
+        /// reqdrpLoginRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqdrpLoginRole;
+
+        /// <summary>
         /// txtUsername control.
         /// </summary>
         /// <remarks>
@@ -78,13 +96,13 @@ namespace PropertyPortal
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtPassword;
 
         /// <summary>
-        /// txtcaptcha control.
+        /// txtCaptcha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcaptcha;
+        protected global::System.Web.UI.WebControls.TextBox txtCaptcha;
 
         /// <summary>
         /// reqtxtcaptcha control.

@@ -59,3 +59,5 @@ E:\Dotnet\PropertyPortal\PropertyPortal\obj\Release\PropertyPortal.csproj.CoreCo
 E:\Dotnet\PropertyPortal\PropertyPortal\obj\Release\PropertyPortal.csproj.CopyComplete
 E:\Dotnet\PropertyPortal\PropertyPortal\obj\Release\PropertyPortal.dll
 E:\Dotnet\PropertyPortal\PropertyPortal\obj\Release\PropertyPortal.pdb
+E:\Dotnet\PropertyPortal\PropertyPortal\bin\Microsoft.AspNet.FriendlyUrls.dll
+E:\Dotnet\PropertyPortal\PropertyPortal\bin\Microsoft.AspNet.FriendlyUrls.xml

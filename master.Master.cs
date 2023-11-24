@@ -22,12 +22,12 @@ namespace PropertyPortal
                     }
                     else
                     {
-                        Response.Redirect(ConfigurationManager.AppSettings["loginurl"].ToString());
+                        Response.Redirect(ConfigurationManager.AppSettings["adminloginurl"].ToString());
                     }
                 }
                 else
                 {
-                    Response.Redirect(ConfigurationManager.AppSettings["loginurl"].ToString());
+                    Response.Redirect(ConfigurationManager.AppSettings["adminloginurl"].ToString());
                 }
             }
         }

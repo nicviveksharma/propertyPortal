@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs/PropertyPortal/config/applicationhost.config
+/Web.Release.config
+/Web.Debug.config
+/Web.config

@@ -2,6 +2,9 @@
 
 <%@ Register Src="~/usercontrol/ucSearch.ascx" TagPrefix="uc1" TagName="ucSearch" %>
 
+<%@ Register Src="~/usercontrol/ucLocation.ascx" TagPrefix="uc2" TagName="ucLocation" %>
+<%@ Register Src="~/usercontrol/ucFeaturedProperties.ascx" TagPrefix="uc3" TagName="ucFeaturedProperties" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -46,47 +49,10 @@
                         </div>
                     </div>
                     <div class="owl-carousel featured-carousel wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="featured-item  wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href="">
-                                        <img class="img-fluid" src="resources/img/property-1.jpg" alt=""></a>
-                                    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Appartment</div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">12,345</h5>
-                                    <a class="d-block h5 mb-2" href="">Demo Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Mumbai, Maharashtra, India</p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-item  wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
-                                    <a href="">
-                                        <img class="img-fluid" src="resources/img/property-2.jpg" alt=""></a>
-                                    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Rent</div>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Villa</div>
-                                </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">12,345</h5>
-                                    <a class="d-block h5 mb-2" href="">Demo Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Mumbai, Maharashtra, India</p>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-item  wow fadeInUp" data-wow-delay="0.5s">
+
+                        <uc3:ucFeaturedProperties runat="server" ID="ucFeaturedProperties" />
+
+                        <%--<div class="featured-item  wow fadeInUp" data-wow-delay="0.5s">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
                                     <a href="">
@@ -125,7 +91,7 @@
                                     <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -138,75 +104,9 @@
                     <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                         <h1 class="mb-3">Properties by Location</h1>
                     </div>
-                    <div class="owl-carousel location-carousel wow fadeInUp" data-wow-delay="0.1s">
 
-                        <div class="location-item rounded overflow-hidden">
-                            <asp:Repeater ID="rptLocation" runat="server">
-                                <HeaderTemplate>
-                                    <table class="table table-bordered sortTable">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>State</th>
-                                                <th>District Name </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <tr>
-                                        <td><%# Eval("stateName") %> </td>
-                                    </tr>
-                                    <tr>
-                                        <td><%# Eval("districtName") %> </td>
-                                    </tr>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                    </tbody>
-                            </table>
-                                </FooterTemplate>
-                            </asp:Repeater>
-                        </div>
-
-                        <div class="location-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="assets/images/dashboard/city-1.jpg" alt="">
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Mumbai</h5>
-                            </div>
-                        </div>
-                        <div class="location-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="assets/images/dashboard/city-2.jpg" alt="">
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Pune</h5>
-                            </div>
-                        </div>
-                        <div class="location-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="assets/images/dashboard/city-3.jpg" alt="">
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Nashik</h5>
-                            </div>
-                        </div>
-                        <div class="location-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="assets/images/dashboard/city-4.jpg" alt="">
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Navi Mumbai</h5>
-                            </div>
-                        </div>
-                        <div class="location-item rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="assets/images/dashboard/city-1.jpg" alt="">
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Mumbai</h5>
-                            </div>
-                        </div>
+                    <div>
+                        <uc2:ucLocation runat="server" ID="ucLocation" />
                     </div>
                 </div>
             </div>
@@ -758,6 +658,8 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="ucSearch" />
+            <asp:PostBackTrigger ControlID="ucLocation" />
+            <asp:PostBackTrigger ControlID="ucFeaturedProperties" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

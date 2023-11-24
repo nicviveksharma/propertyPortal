@@ -49,6 +49,19 @@ namespace PropertyPortal.BAL
             }
         }
 
+        public DataTable GetPropertyMaster(int pkPropertyID, int isActive) // passing Bussiness object Here  
+        {
+            try
+            {
+                clsPropertyDAL objclsPropertyDAL = new clsPropertyDAL(); // Creating object of Dataccess  
+                return objclsPropertyDAL.GetPropertyMaster(pkPropertyID, isActive); // calling Method of DataAccess  
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public int EnableDisableProperty(int pkPropertyID, bool isActive) // passing Bussiness object Here  
         {
             try

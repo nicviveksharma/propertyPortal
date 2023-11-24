@@ -23,7 +23,7 @@ namespace PropertyPortal.usercontrol
         private void BindUser()
         {
             clsUserBAL objclsUserBAL = new clsUserBAL();
-            rptUser.DataSource = objclsUserBAL.GetUser(-1, -1, -1);
+            rptUser.DataSource = objclsUserBAL.GetUser(-1, -1, -1, -1);
             rptUser.DataBind();
         }
         protected void btnAddUser_Click(object sender, EventArgs e)

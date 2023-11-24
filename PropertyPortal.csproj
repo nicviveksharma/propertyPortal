@@ -78,6 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\frmAllProperties.aspx" />
+    <Content Include="admin\frmAllManagers.aspx" />
+    <Content Include="admin\frmAllUsers.aspx" />
+    <Content Include="admin\frmManager.aspx" />
+    <Content Include="assets\images\logo-m.png" />
+    <Content Include="assets\images\logo.png" />
     <Content Include="gallery.aspx" />
     <Content Include="about.aspx" />
     <Content Include="admin\dashboard.aspx" />
@@ -132,8 +138,6 @@
     <Content Include="assets\images\faces\face9.jpg" />
     <Content Include="assets\images\favicon.ico" />
     <Content Include="assets\images\favicon.png" />
-    <Content Include="assets\images\logo-mini.svg" />
-    <Content Include="assets\images\logo.svg" />
     <Content Include="assets\images\refresh.png" />
     <Content Include="assets\images\sprites\blue.png" />
     <Content Include="assets\images\sprites\dark.png" />
@@ -167,6 +171,11 @@
     <Content Include="adminlogin.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="manager\dashboard.aspx" />
+    <Content Include="manager\frmAllProperties.aspx" />
+    <Content Include="manager\frmAllUsers.aspx" />
+    <Content Include="manager\frmProperty.aspx" />
+    <Content Include="manager\frmUser.aspx" />
     <Content Include="resources\css\all.min.css" />
     <Content Include="resources\css\bootstrap-icons.css" />
     <Content Include="resources\css\bootstrap.min.css" />
@@ -224,13 +233,46 @@
     <Content Include="resources\css\webfonts\fa-regular-400.svg" />
     <Content Include="resources\css\webfonts\fa-solid-900.svg" />
     <Content Include="usercontrol\ucAlert.ascx" />
+    <Content Include="usercontrol\ucAllProperties.ascx" />
+    <Content Include="usercontrol\ucAllManagers.ascx" />
+    <Content Include="usercontrol\ucFeaturedProperties.ascx" />
+    <Content Include="usercontrol\ucLocation.ascx" />
     <Content Include="usercontrol\ucProperty.ascx" />
     <Content Include="usercontrol\ucSearch.ascx" />
+    <Content Include="usercontrol\ucManager.ascx" />
+    <Content Include="usercontrol\ucAllUsers.ascx" />
     <Content Include="usercontrol\ucUser.ascx" />
-    <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\frmAllProperties.aspx.cs">
+      <DependentUpon>frmAllProperties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\frmAllProperties.aspx.designer.cs">
+      <DependentUpon>frmAllProperties.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\frmAllManagers.aspx.cs">
+      <DependentUpon>frmAllManagers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\frmAllManagers.aspx.designer.cs">
+      <DependentUpon>frmAllManagers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\frmAllUsers.aspx.cs">
+      <DependentUpon>frmAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\frmAllUsers.aspx.designer.cs">
+      <DependentUpon>frmAllUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\frmManager.aspx.cs">
+      <DependentUpon>frmManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\frmManager.aspx.designer.cs">
+      <DependentUpon>frmManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="gallery.aspx.cs">
       <DependentUpon>gallery.aspx</DependentUpon>
@@ -426,6 +468,48 @@
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="manager\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="managerMaster.Master.cs">
+      <DependentUpon>managerMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="managerMaster.Master.designer.cs">
+      <DependentUpon>managerMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="manager\frmAllProperties.aspx.cs">
+      <DependentUpon>frmAllProperties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\frmAllProperties.aspx.designer.cs">
+      <DependentUpon>frmAllProperties.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\frmAllUsers.aspx.cs">
+      <DependentUpon>frmAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\frmAllUsers.aspx.designer.cs">
+      <DependentUpon>frmAllUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\frmProperty.aspx.cs">
+      <DependentUpon>frmProperty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\frmProperty.aspx.designer.cs">
+      <DependentUpon>frmProperty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="manager\frmUser.aspx.cs">
+      <DependentUpon>frmUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manager\frmUser.aspx.designer.cs">
+      <DependentUpon>frmUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="master.Master.cs">
       <DependentUpon>master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -441,19 +525,40 @@
     <Compile Include="site.Master.designer.cs">
       <DependentUpon>site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="usercontrol\ucAlert.ascx.cs">
       <DependentUpon>ucAlert.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="usercontrol\ucAlert.ascx.designer.cs">
       <DependentUpon>ucAlert.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrol\ucAllProperties.ascx.cs">
+      <DependentUpon>ucAllProperties.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucAllProperties.ascx.designer.cs">
+      <DependentUpon>ucAllProperties.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrol\ucAllManagers.ascx.cs">
+      <DependentUpon>ucAllManagers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucAllManagers.ascx.designer.cs">
+      <DependentUpon>ucAllManagers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrol\ucFeaturedProperties.ascx.cs">
+      <DependentUpon>ucFeaturedProperties.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucFeaturedProperties.ascx.designer.cs">
+      <DependentUpon>ucFeaturedProperties.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrol\ucLocation.ascx.cs">
+      <DependentUpon>ucLocation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucLocation.ascx.designer.cs">
+      <DependentUpon>ucLocation.ascx</DependentUpon>
     </Compile>
     <Compile Include="usercontrol\ucProperty.ascx.cs">
       <DependentUpon>ucProperty.ascx</DependentUpon>
@@ -469,19 +574,26 @@
     <Compile Include="usercontrol\ucSearch.ascx.designer.cs">
       <DependentUpon>ucSearch.ascx</DependentUpon>
     </Compile>
+    <Compile Include="usercontrol\ucManager.ascx.cs">
+      <DependentUpon>ucManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucManager.ascx.designer.cs">
+      <DependentUpon>ucManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="usercontrol\ucAllUsers.ascx.cs">
+      <DependentUpon>ucAllUsers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usercontrol\ucAllUsers.ascx.designer.cs">
+      <DependentUpon>ucAllUsers.ascx</DependentUpon>
+    </Compile>
     <Compile Include="usercontrol\ucUser.ascx.cs">
       <DependentUpon>ucUser.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="usercontrol\ucUser.ascx.designer.cs">
       <DependentUpon>ucUser.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.designer.cs">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -552,6 +664,7 @@
     <Content Include="assets\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="master.Master" />
     <Content Include="dashboardMaster.Master" />
+    <Content Include="managerMaster.Master" />
     <None Include="packages.config" />
     <Content Include="resources\lib\owlcarousel\LICENSE" />
     <Content Include="resources\lib\waypoints\links.php" />
@@ -570,7 +683,6 @@
     <Content Include="resources\css\webfonts\fa-solid-900.woff2" />
     <Content Include="resources\css\fonts\bootstrap-icons.woff" />
     <Content Include="resources\css\fonts\bootstrap-icons.woff2" />
-    <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

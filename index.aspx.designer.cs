@@ -42,12 +42,21 @@ namespace PropertyPortal
         protected global::PropertyPortal.usercontrol.ucSearch ucSearch;
 
         /// <summary>
-        /// rptLocation control.
+        /// ucFeaturedProperties control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptLocation;
+        protected global::PropertyPortal.usercontrol.ucFeaturedProperties ucFeaturedProperties;
+
+        /// <summary>
+        /// ucLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::PropertyPortal.usercontrol.ucLocation ucLocation;
     }
 }

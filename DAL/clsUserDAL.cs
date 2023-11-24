@@ -87,7 +87,7 @@ namespace PropertyPortal.DAL
                 con.Close();
             }
         }
-        public DataTable GetUser(int fkLoginID, int isActive, int isVerified)
+        public DataTable GetUser(int fkLoginID, int loginRole, int isActive, int isVerified)
         {
             using (cmd = new SqlCommand("sp_User_Get", con))
             {
@@ -95,6 +95,7 @@ namespace PropertyPortal.DAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@fkLoginID", fkLoginID);
+                    cmd.Parameters.AddWithValue("@loginRole", loginRole);
                     cmd.Parameters.AddWithValue("@isActive", isActive);
                     cmd.Parameters.AddWithValue("@isVerified", isVerified);
                     if (con.State.Equals(ConnectionState.Closed))
