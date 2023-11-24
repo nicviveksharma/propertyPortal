@@ -233,10 +233,6 @@
     <Content Include="resources\css\webfonts\fa-regular-400.svg" />
     <Content Include="resources\css\webfonts\fa-solid-900.svg" />
     <Content Include="usercontrol\ucAlert.ascx" />
-    <Content Include="usercontrol\ucAllProperties.ascx" />
-    <Content Include="usercontrol\ucAllManagers.ascx" />
-    <Content Include="usercontrol\ucFeaturedProperties.ascx" />
-    <Content Include="usercontrol\ucLocation.ascx" />
     <Content Include="usercontrol\ucProperty.ascx" />
     <Content Include="usercontrol\ucSearch.ascx" />
     <Content Include="usercontrol\ucManager.ascx" />
@@ -274,6 +270,9 @@
       <DependentUpon>frmManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BAL\clsContactForm.cs" />
+    <Compile Include="BO\clsContactForm.cs" />
+    <Compile Include="DAL\clsContactFormDAL.cs" />
     <Compile Include="gallery.aspx.cs">
       <DependentUpon>gallery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -531,34 +530,6 @@
     </Compile>
     <Compile Include="usercontrol\ucAlert.ascx.designer.cs">
       <DependentUpon>ucAlert.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="usercontrol\ucAllProperties.ascx.cs">
-      <DependentUpon>ucAllProperties.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="usercontrol\ucAllProperties.ascx.designer.cs">
-      <DependentUpon>ucAllProperties.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="usercontrol\ucAllManagers.ascx.cs">
-      <DependentUpon>ucAllManagers.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="usercontrol\ucAllManagers.ascx.designer.cs">
-      <DependentUpon>ucAllManagers.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="usercontrol\ucFeaturedProperties.ascx.cs">
-      <DependentUpon>ucFeaturedProperties.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="usercontrol\ucFeaturedProperties.ascx.designer.cs">
-      <DependentUpon>ucFeaturedProperties.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="usercontrol\ucLocation.ascx.cs">
-      <DependentUpon>ucLocation.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="usercontrol\ucLocation.ascx.designer.cs">
-      <DependentUpon>ucLocation.ascx</DependentUpon>
     </Compile>
     <Compile Include="usercontrol\ucProperty.ascx.cs">
       <DependentUpon>ucProperty.ascx</DependentUpon>
