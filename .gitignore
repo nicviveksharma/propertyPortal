@@ -6,3 +6,14 @@
 /Web.Release.config
 /Web.Debug.config
 /Web.config
+/packages.config
+bin/
+obj/
+/PropertyPortal.csproj
+/PropertyPortal.csproj.user
+/script.sql
+config/
+packages/
+Properties/
+/PropertyPortal.sln
+/.vs/PropertyPortal/FileContentIndex
